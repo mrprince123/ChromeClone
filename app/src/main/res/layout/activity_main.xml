@@ -8,11 +8,23 @@
     tools:context=".MainActivity">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="20dp">
+
+            <TextView
+                android:id="@+id/voice_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -73,21 +85,39 @@
 
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/url_button"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/circle"
-                android:hint="Search or type web address"
-                android:imeOptions="actionSearch"
-                android:inputType="text"
-                android:maxLines="1"
-                android:padding="12dp"
-                android:textColorHint="@color/black"
-                android:textSize="15sp" />
+                android:layout_marginTop="30dp">
+
+
+                <EditText
+                    android:id="@+id/url_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/circle"
+                    android:hint="Search or type web address"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:maxLines="1"
+                    android:padding="12dp"
+                    android:textColorHint="@color/black"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/google_search_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="25dp"
+                    android:src="@drawable/outline_mic_none_24" />
+
+            </RelativeLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -206,15 +236,7 @@
                         android:padding="10dp"
                         android:src="@drawable/hotstar_one" />
 
-                    <ImageButton
-                        android:id="@+id/techcrunch_button"
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/circle"
-                        android:padding="10dp"
-                        android:src="@drawable/techcrunch_one" />
+
 
                     <ImageButton
                         android:id="@+id/instagram_button"
@@ -236,6 +258,16 @@
                         android:padding="10dp"
                         android:src="@drawable/youtube" />
 
+                    <ImageButton
+                        android:id="@+id/feedback_button"
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/circle"
+                        android:padding="10dp"
+                        android:src="@drawable/message_small" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -251,13 +283,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/white" />
 
-                    <TextView
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Techcrunch"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
+
 
                     <TextView
                         android:layout_width="1dp"
@@ -275,6 +301,14 @@
                         android:textAlignment="center"
                         android:textColor="@color/white" />
 
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Feedback"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
+
 
                 </LinearLayout>
 
@@ -284,30 +318,27 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/border"
-                android:padding="5dp"
                 android:layout_marginTop="30dp"
-                android:orientation="vertical">
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="5dp">
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="@color/black"
-                        android:text="Discover"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="Discover"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
 
-                    <ProgressBar
-                        android:id="@+id/loading_news"
-                        android:layout_width="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_height="20dp"/>
-
-
-
+                <ProgressBar
+                    android:id="@+id/loading_news"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center" />
 
                 <WebView
                     android:id="@+id/news_tech"
@@ -316,8 +347,9 @@
 
             </LinearLayout>
 
-
         </LinearLayout>
 
+
+    </RelativeLayout>
 
 </ScrollView>

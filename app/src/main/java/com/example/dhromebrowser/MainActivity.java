@@ -1,5 +1,6 @@
 package com.example.dhromebrowser;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.service.controls.actions.FloatAction;
+import android.speech.RecognizerIntent;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,16 +18,25 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton amazonButton, googleButton, flipkartButton, myntraButton, hotstarButton, techcrunchButton, instagramButton, youtubeButton;
+    ImageButton amazonButton, googleButton, flipkartButton, myntraButton, hotstarButton, instagramButton, youtubeButton;
+    ImageButton feedbackButton;
 
     WebView webView;
+
+    ImageView google_search_button;
+    String voice;
+
+    EditText urlET;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,16 +45,42 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    // Google Search Button
+    public void openVoiceDialog() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        startActivityForResult(intent, 200);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 200 && resultCode == RESULT_OK) {
+            ArrayList<String> arrayList = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            voice = arrayList.get(0);
+            urlET.setText(voice);
+//            Toast.makeText(this, voice, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Something Went wrong!!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().hide();
-//        getSupportActionBar().addOnMenuVisibilityListener(onCreateOptionsMenu());
+        urlET = findViewById(R.id.url_button);
 
-        final EditText urlET = findViewById(R.id.url_button);
-
+        // Google Voice Search Button
+        google_search_button = findViewById(R.id.google_search_button);
+        google_search_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openVoiceDialog();
+            }
+        });
 
         urlET.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -51,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
 
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     final String urlText = urlET.getText().toString();
-
                     if (!urlText.isEmpty()) {
                         urlET.setText("");
                         Intent intent = new Intent(MainActivity.this, BrowserActivity.class);
@@ -62,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
 
         amazonButton = findViewById(R.id.amazon_button);
         amazonButton.setOnClickListener(new View.OnClickListener() {
@@ -108,14 +145,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        techcrunchButton = findViewById(R.id.techcrunch_button);
-        techcrunchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TechcrunchActivity.class);
-                startActivity(intent);
-            }
-        });
 
         instagramButton = findViewById(R.id.instagram_button);
         instagramButton.setOnClickListener(new View.OnClickListener() {
@@ -145,9 +174,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // This is the feedback Button
+        feedbackButton = findViewById(R.id.feedback_button);
+        feedbackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FeedbackActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         webView = findViewById(R.id.news_tech);
         ProgressBar progressBar = findViewById(R.id.loading_news);
-//        TextView loadingText = findViewById(R.id.loading_text);
         webView.getSettings().setJavaScriptEnabled(true);
 
         webView.setWebViewClient(new WebViewClient() {
@@ -160,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 progressBar.setVisibility(View.INVISIBLE);
-//                loadingText.setVisibility(View.INVISIBLE);
                 super.onPageFinished(view, url);
             }
         });
@@ -177,4 +215,5 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
 }

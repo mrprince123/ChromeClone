@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "75909112922",
+    "project_id": "chromeone-cb40a",
+    "storage_bucket": "chromeone-cb40a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75909112922:android:8af0b7a842b5b5dfa8e463",
+        "android_client_info": {
+          "package_name": "com.browser.dhromebrowser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75909112922-mqmc3g4d4o268qoetqbia3bnag68ob7c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQfq5xbngbZwZ4jHDNS5RVvA-yCBIM4yA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75909112922-mqmc3g4d4o268qoetqbia3bnag68ob7c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
