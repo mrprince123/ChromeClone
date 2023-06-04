@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".GoogleActivity">
 
+
     <WebView
         android:id="@+id/google_webview"
         android:layout_width="match_parent"
@@ -17,7 +18,5 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_centerInParent="true"/>
-
-
 
 </RelativeLayout>

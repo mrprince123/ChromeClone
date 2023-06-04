@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/gradient1"
     tools:context=".MainActivity">
 
@@ -23,8 +23,7 @@
                 android:id="@+id/voice_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""/>
-
+                android:text="" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -101,9 +100,9 @@
                     android:hint="Search or type web address"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
-                    android:textColor="@color/black"
                     android:maxLines="1"
                     android:padding="12dp"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/black"
                     android:textSize="15sp" />
 
@@ -140,6 +139,9 @@
                         android:padding="10dp"
                         android:src="@drawable/google_one" />
 
+
+
+
                     <ImageButton
                         android:id="@+id/amazon_button"
                         android:layout_width="1dp"
@@ -149,6 +151,8 @@
                         android:background="@drawable/circle"
                         android:padding="10dp"
                         android:src="@drawable/amazone_one" />
+
+
 
                     <ImageButton
                         android:id="@+id/flipkart_button"
@@ -160,6 +164,8 @@
                         android:padding="10dp"
                         android:src="@drawable/flipkart_icon" />
 
+
+
                     <ImageButton
                         android:id="@+id/myntra_button"
                         android:layout_width="1dp"
@@ -169,6 +175,8 @@
                         android:background="@drawable/circle"
                         android:padding="10dp"
                         android:src="@drawable/myntra" />
+
+
 
 
                 </LinearLayout>
@@ -237,7 +245,6 @@
                         android:src="@drawable/hotstar_one" />
 
 
-
                     <ImageButton
                         android:id="@+id/instagram_button"
                         android:layout_width="1dp"
@@ -284,7 +291,6 @@
                         android:textColor="@color/white" />
 
 
-
                     <TextView
                         android:layout_width="1dp"
                         android:layout_height="wrap_content"
@@ -315,41 +321,46 @@
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="30dp"
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:layout_marginTop="30dp"-->
+            <!--                android:background="@drawable/border"-->
+            <!--                android:orientation="vertical"-->
+            <!--                android:padding="5dp">-->
+
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginLeft="10dp"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:text="Discover"-->
+            <!--                    android:textColor="@color/black"-->
+            <!--                    android:textSize="16dp"-->
+            <!--                    android:textStyle="bold" />-->
+
+            <!--                <ProgressBar-->
+            <!--                    android:id="@+id/loading_news"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="20dp"-->
+            <!--                    android:layout_gravity="center" />-->
+
+            <!--                <WebView-->
+            <!--                    android:id="@+id/news_tech"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content" />-->
+
+            <!--            </LinearLayout>-->
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/news_list"
                 android:background="@drawable/border"
-                android:orientation="vertical"
-                android:padding="5dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" />
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:text="Discover"
-                    android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <ProgressBar
-                    android:id="@+id/loading_news"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center" />
-
-                <WebView
-                    android:id="@+id/news_tech"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
 
         </LinearLayout>
-
-
     </RelativeLayout>
-
 </ScrollView>

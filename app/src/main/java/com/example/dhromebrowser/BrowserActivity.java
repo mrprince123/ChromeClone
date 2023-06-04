@@ -61,7 +61,6 @@ public class BrowserActivity extends AppCompatActivity {
                     final String urlText = urlET.getText().toString();
 
                     if (!urlText.isEmpty()) {
-
                         final String urlDate = url.substring(0, 4);
                         if (!urlDate.contains("www.")) {
                             url = "www.google.com/search?q=" + url;

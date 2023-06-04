@@ -1,29 +1,44 @@
 package com.example.dhromebrowser;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.service.controls.actions.FloatAction;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.dhromebrowser.Adapter.NewsAdapter;
+import com.example.dhromebrowser.models.News;
+import com.makeramen.roundedimageview.RoundedImageView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
     String voice;
 
     EditText urlET;
+
+
+    ArrayList<News> news;
+    NewsAdapter newsAdapter;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -185,25 +204,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        webView = findViewById(R.id.news_tech);
-        ProgressBar progressBar = findViewById(R.id.loading_news);
-        webView.getSettings().setJavaScriptEnabled(true);
+        // This is for the webView of the Techcrunch
+//        webView = findViewById(R.id.news_tech);
+//        ProgressBar progressBar = findViewById(R.id.loading_news);
+//        webView.getSettings().setJavaScriptEnabled(true);
+//
+//        webView.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+//                progressBar.setVisibility(View.VISIBLE);
+//                super.onPageStarted(view, url, favicon);
+//            }
+//
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                progressBar.setVisibility(View.INVISIBLE);
+//                super.onPageFinished(view, url);
+//            }
+//        });
+//
+//        webView.loadUrl("https://techcrunch.com/");
 
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                progressBar.setVisibility(View.VISIBLE);
-                super.onPageStarted(view, url, favicon);
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                progressBar.setVisibility(View.INVISIBLE);
-                super.onPageFinished(view, url);
-            }
-        });
-
-        webView.loadUrl("https://techcrunch.com/");
+        initNews();
 
     }
 
@@ -216,4 +238,68 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    void initNews() {
+        news = new ArrayList<>();
+        newsAdapter = new NewsAdapter(this, news);
+
+        getNewsData();
+
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
+        RecyclerView recyclerView = findViewById(R.id.news_list);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(newsAdapter);
+    }
+
+    void getNewsData() {
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        String url = "https://newsapi.org/v2/everything?apiKey=9d12903806bd47c2b5e70d25cd09c9ca&domains=techcrunch.com";
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("ERROR", response);
+
+                try {
+                    JSONObject mainObj = new JSONObject(response);
+                    if (mainObj.getString("status").equals("ok")) {
+                        JSONArray newsArray = mainObj.getJSONArray("articles");
+                        for (int i = 0; i < newsArray.length(); i++) {
+                            JSONObject object = newsArray.getJSONObject(i);
+                            News newsData = new News(
+                                    object.getString("author"),
+                                    object.getString("title"),
+                                    object.getString("url"),
+                                    object.getString("urlToImage")
+                            );
+                            news.add(newsData);
+                        }
+                        newsAdapter.notifyDataSetChanged();
+                    } else {
+                        // Do nothing
+                    }
+
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                    Log.e("ERROR", "Volley Error: " + error.getMessage());
+                    // Handle the error here, such as displaying an error message to the user or retrying the request.
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("User-Agent", "Mozilla/5.0");
+
+                return headers;
+            }
+        };
+        requestQueue.add(request);
+    }
 }

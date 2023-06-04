@@ -12,8 +12,6 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 public class HotstarActivity extends AppCompatActivity {
-
-
     private WebView webView;
     private ProgressBar progressBar;
 
