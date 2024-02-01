@@ -15,7 +15,6 @@ public class HotstarActivity extends AppCompatActivity {
     private WebView webView;
     private ProgressBar progressBar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

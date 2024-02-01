@@ -29,7 +29,6 @@ public class BrowserActivity extends AppCompatActivity {
         final EditText urlET = findViewById(R.id.url_text);
         final ImageView homeBtn = findViewById(R.id.home_icon);
 
-
         url = getIntent().getStringExtra("url");
 
         final String urlDate = url.substring(0, 4);
@@ -61,9 +60,9 @@ public class BrowserActivity extends AppCompatActivity {
                     final String urlText = urlET.getText().toString();
 
                     if (!urlText.isEmpty()) {
-                        final String urlDate = url.substring(0, 4);
+                        final String urlDate = urlText.substring(0, 4);
                         if (!urlDate.contains("www.")) {
-                            url = "www.google.com/search?q=" + url;
+                            url = "www.google.com/search?q=" + urlText;
                         } else {
                             url = urlText;
                         }

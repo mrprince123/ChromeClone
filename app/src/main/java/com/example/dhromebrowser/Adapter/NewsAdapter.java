@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.dhromebrowser.NewsActivity;
 import com.example.dhromebrowser.R;
 import com.example.dhromebrowser.databinding.ItemNewsBinding;
 import com.example.dhromebrowser.models.News;
@@ -52,29 +53,24 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             @Override
             public void onClick(View v) {
                 String url = news1.getUrl();
+                    // Open URL in WebView
+                    WebView webView = new WebView(context);
+                    webView.setWebViewClient(new WebViewClient());
+                    webView.getSettings().setJavaScriptEnabled(true);
+                    webView.loadUrl(url);
 
+//                     Create a dialog to display the WebView
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setView(webView);
+                    builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
 
-//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//                context.startActivity(intent);
-
-                // Open URL in WebView
-                WebView webView = new WebView(context);
-                webView.setWebViewClient(new WebViewClient());
-                webView.getSettings().setJavaScriptEnabled(true);
-                webView.loadUrl(url);
-
-                // Create a dialog to display the WebView
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setView(webView);
-                builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
             }
         });
 
@@ -84,7 +80,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     public int getItemCount() {
         return news.size();
     }
-
 
     public class NewsViewHolder extends RecyclerView.ViewHolder{
         ItemNewsBinding binding;

@@ -2,6 +2,7 @@ package com.example.dhromebrowser;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -11,8 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-public class GoogleActivity extends AppCompatActivity {
-
+public class NewsActivity extends AppCompatActivity {
 
     WebView webView;
     ProgressBar progressBar;
@@ -20,23 +20,26 @@ public class GoogleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_google);
+        setContentView(R.layout.activity_news);
 
-        getSupportActionBar().hide();
-            webView = findViewById(R.id.google_webview);
-            webView.loadUrl("https://www.wikipedia.org/");
+        // Enable the "Up" button in the ActionBar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        Intent intent = getIntent();
+        if(intent != null){
+            String newsUrl = intent.getStringExtra("newsUrl");
+
+            WebView webView = findViewById(R.id.webView);
+            progressBar = findViewById(R.id.flipkart_progress);
+
+
+            webView.getSettings().setJavaScriptEnabled(true);
             webView.setWebChromeClient(new WebChromeClient());
 
-            WebSettings webSettings = webView.getSettings();
-            webSettings.setJavaScriptEnabled(true);
 
-
-            webSettings.setPluginState(WebSettings.PluginState.ON);
-
-            progressBar = findViewById(R.id.google_progress);
-
-
-            webView.setWebViewClient(new WebViewClient() {
+            webView.setWebViewClient(new WebViewClient(){
                 @Override
                 public void onPageStarted(WebView view, String url, Bitmap favicon) {
                     progressBar.setVisibility(View.VISIBLE);
@@ -50,15 +53,17 @@ public class GoogleActivity extends AppCompatActivity {
                 }
             });
 
+            webView.loadUrl(newsUrl);
         }
+    }
 
-        @Override
-        public void onBackPressed() {
-            if (webView.canGoBack()) {
-                webView.goBack();
-            } else {
-                super.onBackPressed();
-            }
+    @Override
+    public void onBackPressed() {
+        if (webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            super.onBackPressed();
+        }
 
     }
 }

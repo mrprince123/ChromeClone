@@ -4,14 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity">
+    tools:context=".NewsActivity">
 
-    <ImageView
-        android:id="@+id/logo"
+
+    <WebView
+        android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:padding="140dp"
-        android:src="@drawable/browser_logo" />
+        android:layout_marginTop="?attr/actionBarSize" />
+
+    <ProgressBar
+        android:id="@+id/flipkart_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

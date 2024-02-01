@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     EditText urlET;
 
-
     ArrayList<News> news;
     NewsAdapter newsAdapter;
 
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    // Google Search Button
+    // Google Search Button for the Voice Command
     public void openVoiceDialog() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -78,9 +77,21 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<String> arrayList = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             voice = arrayList.get(0);
             urlET.setText(voice);
-//            Toast.makeText(this, voice, Toast.LENGTH_SHORT).show();
+            startSearch(voice);
         } else {
             Toast.makeText(this, "Something Went wrong!!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Start Search without click, only after the voice command
+    private void startSearch(String query) {
+        // Perform the search operation based on the query
+        // For example, update the URL and load the WebView with the search query
+        if (!query.isEmpty()) {
+            urlET.setText("");
+            Intent intent = new Intent(MainActivity.this, BrowserActivity.class);
+            intent.putExtra("url", query);
+            startActivity(intent);
         }
     }
 
@@ -106,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    final String urlText = urlET.getText().toString();
+                    final String urlText = urlET.getText().toString(); // Getting the Text from the EditText Field
                     if (!urlText.isEmpty()) {
                         urlET.setText("");
                         Intent intent = new Intent(MainActivity.this, BrowserActivity.class);
@@ -118,16 +129,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        amazonButton = findViewById(R.id.amazon_button);
-        amazonButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AmazonActivity.class);
-                startActivity(intent);
-            }
-        });
-
+        //        Google Webpage View
         googleButton = findViewById(R.id.google_button);
         googleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +139,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+//        Amazon Webpage View
+        amazonButton = findViewById(R.id.amazon_button);
+        amazonButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AmazonActivity.class);
+                startActivity(intent);
+            }
+        });
+
+//        Flipkart Webpage View
         flipkartButton = findViewById(R.id.flipkart_button);
         flipkartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//        Myntra Webpage View
         myntraButton = findViewById(R.id.myntra_button);
         myntraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//        Hotstar Webpage View
         hotstarButton = findViewById(R.id.hotstar_button);
         hotstarButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+//        Instagram Webpage View
         instagramButton = findViewById(R.id.instagram_button);
         instagramButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,15 +190,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        myntraButton = findViewById(R.id.myntra_button);
-        myntraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MyntraActivity.class);
-                startActivity(intent);
-            }
-        });
-
+//        YouTube Webpage View
         youtubeButton = findViewById(R.id.youtube_button);
         youtubeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         // This is the feedback Button
         feedbackButton = findViewById(R.id.feedback_button);
@@ -203,28 +210,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        // This is for the webView of the Techcrunch
-//        webView = findViewById(R.id.news_tech);
-//        ProgressBar progressBar = findViewById(R.id.loading_news);
-//        webView.getSettings().setJavaScriptEnabled(true);
-//
-//        webView.setWebViewClient(new WebViewClient() {
-//            @Override
-//            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-//                progressBar.setVisibility(View.VISIBLE);
-//                super.onPageStarted(view, url, favicon);
-//            }
-//
-//            @Override
-//            public void onPageFinished(WebView view, String url) {
-//                progressBar.setVisibility(View.INVISIBLE);
-//                super.onPageFinished(view, url);
-//            }
-//        });
-//
-//        webView.loadUrl("https://techcrunch.com/");
-
+//        Initializing the New Function
         initNews();
 
     }
@@ -238,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+//    For Getting the News Data
     void initNews() {
         news = new ArrayList<>();
         newsAdapter = new NewsAdapter(this, news);
@@ -250,12 +236,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(newsAdapter);
     }
-
     void getNewsData() {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        String url = "https://newsapi.org/v2/everything?apiKey=9d12903806bd47c2b5e70d25cd09c9ca&domains=techcrunch.com";
+        String url = "https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=9d12903806bd47c2b5e70d25cd09c9ca";
 
-        String url = "https://newsapi.org/v2/everything?apiKey=9d12903806bd47c2b5e70d25cd09c9ca&domains=techcrunch.com";
+//        String url = "https://newsapi.org/v2/top-headlines?category=technology&apiKey=9d12903806bd47c2b5e70d25cd09c9ca";
+
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -265,16 +253,27 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject mainObj = new JSONObject(response);
                     if (mainObj.getString("status").equals("ok")) {
                         JSONArray newsArray = mainObj.getJSONArray("articles");
+//                        for (int i = 0; i < newsArray.length(); i++) {
+//                            JSONObject object = newsArray.getJSONObject(i);
+//                            News newsData = new News(
+//                                    object.getString("author"),
+//                                    object.getString("title"),
+//                                    object.getString("url"),
+//                                    object.getString("urlToImage")
+//                            );
+//                            news.add(newsData);
+//                        }
                         for (int i = 0; i < newsArray.length(); i++) {
                             JSONObject object = newsArray.getJSONObject(i);
-                            News newsData = new News(
-                                    object.getString("author"),
-                                    object.getString("title"),
-                                    object.getString("url"),
-                                    object.getString("urlToImage")
-                            );
+                            String author = object.getString("author");
+                            String title = object.getString("title");
+                            String url = object.getString("url");
+                            String urlToImage = object.isNull("urlToImage") ? "https://cdn.pixabay.com/photo/2014/08/07/21/13/newspaper-412811_1280.jpg" : object.getString("urlToImage");
+
+                            News newsData = new News(author, title, url, urlToImage);
                             news.add(newsData);
                         }
+
                         newsAdapter.notifyDataSetChanged();
                     } else {
                         // Do nothing
@@ -296,7 +295,6 @@ public class MainActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("User-Agent", "Mozilla/5.0");
-
                 return headers;
             }
         };

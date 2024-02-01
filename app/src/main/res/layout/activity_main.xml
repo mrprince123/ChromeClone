@@ -7,11 +7,9 @@
     android:background="@drawable/gradient1"
     tools:context=".MainActivity">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -137,9 +135,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/circle"
                         android:padding="10dp"
-                        android:src="@drawable/google_one" />
-
-
+                        android:src="@drawable/wikki" />
 
 
                     <ImageButton
@@ -190,7 +186,7 @@
                         android:layout_width="1dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Google"
+                        android:text="Wikipedia"
                         android:textAlignment="center"
                         android:textColor="@color/white" />
 
