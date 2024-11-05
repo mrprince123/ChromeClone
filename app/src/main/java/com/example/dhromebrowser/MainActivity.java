@@ -42,20 +42,14 @@ import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
-
     ImageButton amazonButton, googleButton, flipkartButton, myntraButton, hotstarButton, instagramButton, youtubeButton;
     ImageButton feedbackButton;
-
     WebView webView;
-
     ImageView google_search_button;
     String voice;
-
     EditText urlET;
-
     ArrayList<News> news;
     NewsAdapter newsAdapter;
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -212,7 +206,6 @@ public class MainActivity extends AppCompatActivity {
 
 //        Initializing the New Function
         initNews();
-
     }
 
     @Override
@@ -239,10 +232,8 @@ public class MainActivity extends AppCompatActivity {
     void getNewsData() {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        String url = "https://newsapi.org/v2/everything?apiKey=9d12903806bd47c2b5e70d25cd09c9ca&domains=techcrunch.com";
-        String url = "https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=9d12903806bd47c2b5e70d25cd09c9ca";
 
-//        String url = "https://newsapi.org/v2/top-headlines?category=technology&apiKey=9d12903806bd47c2b5e70d25cd09c9ca";
+        String url = "https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=9d12903806bd47c2b5e70d25cd09c9ca";
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -253,16 +244,6 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject mainObj = new JSONObject(response);
                     if (mainObj.getString("status").equals("ok")) {
                         JSONArray newsArray = mainObj.getJSONArray("articles");
-//                        for (int i = 0; i < newsArray.length(); i++) {
-//                            JSONObject object = newsArray.getJSONObject(i);
-//                            News newsData = new News(
-//                                    object.getString("author"),
-//                                    object.getString("title"),
-//                                    object.getString("url"),
-//                                    object.getString("urlToImage")
-//                            );
-//                            news.add(newsData);
-//                        }
                         for (int i = 0; i < newsArray.length(); i++) {
                             JSONObject object = newsArray.getJSONObject(i);
                             String author = object.getString("author");

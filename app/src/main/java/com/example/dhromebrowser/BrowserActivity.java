@@ -2,6 +2,7 @@ package com.example.dhromebrowser;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class BrowserActivity extends AppCompatActivity {
     private String url;
     private WebView webView;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +52,6 @@ public class BrowserActivity extends AppCompatActivity {
                 super.onPageFinished(view, url);
             }
         });
-
 
         urlET.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

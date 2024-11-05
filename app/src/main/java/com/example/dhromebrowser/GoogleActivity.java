@@ -12,8 +12,6 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 public class GoogleActivity extends AppCompatActivity {
-
-
     WebView webView;
     ProgressBar progressBar;
 
@@ -30,11 +28,9 @@ public class GoogleActivity extends AppCompatActivity {
             WebSettings webSettings = webView.getSettings();
             webSettings.setJavaScriptEnabled(true);
 
-
             webSettings.setPluginState(WebSettings.PluginState.ON);
 
             progressBar = findViewById(R.id.google_progress);
-
 
             webView.setWebViewClient(new WebViewClient() {
                 @Override
@@ -49,9 +45,7 @@ public class GoogleActivity extends AppCompatActivity {
                     super.onPageFinished(view, url);
                 }
             });
-
         }
-
         @Override
         public void onBackPressed() {
             if (webView.canGoBack()) {
@@ -59,6 +53,5 @@ public class GoogleActivity extends AppCompatActivity {
             } else {
                 super.onBackPressed();
             }
-
     }
 }

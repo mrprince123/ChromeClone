@@ -317,38 +317,6 @@
             </LinearLayout>
 
 
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:layout_marginTop="30dp"-->
-            <!--                android:background="@drawable/border"-->
-            <!--                android:orientation="vertical"-->
-            <!--                android:padding="5dp">-->
-
-            <!--                <TextView-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_marginLeft="10dp"-->
-            <!--                    android:layout_weight="1"-->
-            <!--                    android:text="Discover"-->
-            <!--                    android:textColor="@color/black"-->
-            <!--                    android:textSize="16dp"-->
-            <!--                    android:textStyle="bold" />-->
-
-            <!--                <ProgressBar-->
-            <!--                    android:id="@+id/loading_news"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="20dp"-->
-            <!--                    android:layout_gravity="center" />-->
-
-            <!--                <WebView-->
-            <!--                    android:id="@+id/news_tech"-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="wrap_content" />-->
-
-            <!--            </LinearLayout>-->
-
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/news_list"
                 android:background="@drawable/border"
