@@ -40,7 +40,6 @@
             android:textFontWeight="700"
             android:textSize="14dp" />
 
-
     </LinearLayout>
 
     <ProgressBar

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/gradient1"
     tools:context=".MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,23 +16,16 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <TextView
-                android:id="@+id/voice_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="70dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/robot_regular"
                     android:text="G"
                     android:textColor="@color/white"
                     android:textSize="60sp" />
@@ -41,7 +33,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/robot_regular"
                     android:text="o"
                     android:textColor="#EA4335"
                     android:textSize="60sp" />
@@ -49,16 +40,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/robot_regular"
                     android:text="o"
                     android:textColor="#FBBC05"
                     android:textSize="60sp" />
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/robot_regular"
                     android:text="g"
                     android:textColor="@color/white"
                     android:textSize="60sp" />
@@ -67,7 +55,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/robot_regular"
                     android:text="l"
                     android:textColor="#34A853"
                     android:textSize="60sp" />
@@ -75,7 +62,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/robot_regular"
                     android:text="e"
                     android:textColor="#EA4335"
                     android:textSize="60sp" />
@@ -87,21 +73,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp">
 
-
                 <EditText
-                    android:id="@+id/url_button"
+                    android:id="@+id/search_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:background="@drawable/circle"
+                    android:backgroundTint="@color/foregroundColor"
                     android:hint="Search or type web address"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:padding="12dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
+                    android:padding="20dp"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/textColor"
                     android:textSize="15sp" />
 
                 <ImageView
@@ -111,220 +95,48 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
                     android:layout_marginRight="25dp"
-                    android:src="@drawable/outline_mic_none_24" />
+                    android:src="@drawable/mic_24" />
 
             </RelativeLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageButton
-                        android:id="@+id/google_button"
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/circle"
-                        android:padding="10dp"
-                        android:src="@drawable/wikki" />
-
-
-                    <ImageButton
-                        android:id="@+id/amazon_button"
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/circle"
-                        android:padding="10dp"
-                        android:src="@drawable/amazone_one" />
-
-
-
-                    <ImageButton
-                        android:id="@+id/flipkart_button"
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/circle"
-                        android:padding="10dp"
-                        android:src="@drawable/flipkart_icon" />
-
-
-
-                    <ImageButton
-                        android:id="@+id/myntra_button"
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/circle"
-                        android:padding="10dp"
-                        android:src="@drawable/myntra" />
-
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Wikipedia"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-
-                    <TextView
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="amazon"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-
-                    <TextView
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Flipkart"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-
-                    <TextView
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Myntra"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageButton
-                        android:id="@+id/hotstar_button"
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/circle"
-                        android:padding="10dp"
-                        android:src="@drawable/hotstar_one" />
-
-
-                    <ImageButton
-                        android:id="@+id/instagram_button"
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/circle"
-                        android:padding="10dp"
-                        android:src="@drawable/instagram" />
-
-                    <ImageButton
-                        android:id="@+id/youtube_button"
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/circle"
-                        android:padding="10dp"
-                        android:src="@drawable/youtube" />
-
-                    <ImageButton
-                        android:id="@+id/feedback_button"
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/circle"
-                        android:padding="10dp"
-                        android:src="@drawable/message_small" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Hotstar"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-
-
-                    <TextView
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Instagram"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-
-                    <TextView
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="YouTube"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-
-                    <TextView
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Feedback"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/news_list"
-                android:background="@drawable/border"
+                android:id="@+id/webpage_recycle_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp" />
+                android:layout_marginTop="20dp"
+                android:padding="10dp" />
 
+            <LinearLayout
+                android:id="@+id/loading_news_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:progressTint="@color/textColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/textColor"
+                    android:text="Loading news...." />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/news_recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/round_border"
+                android:backgroundTint="@color/foregroundColor" />
 
         </LinearLayout>
     </RelativeLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

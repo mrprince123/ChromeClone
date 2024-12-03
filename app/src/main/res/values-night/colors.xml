@@ -7,16 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="grey">#e9ecef</color>
 
-<!--    These are the custom color for Gradient -->
-    <color name="start">#1565c0</color>
-    <color name="center">#2196f3</color>
-    <color name="end">#90caf9</color>
+    <!--    These are the custom color for Gradient -->
+    <color name="start">#000428</color>
+    <color name="center">#02073B</color>
+    <color name="end">#004e92</color>
 
-
-    <color name="backgroundColor">#f5f3f4</color>
-    <color name="textColor">#000000</color>
-    <color name="foregroundColor">#FFFFFF</color>
-
+    <color name="backgroundColor">#10131c</color>
+    <color name="textColor">#FFFFFF</color>
+    <color name="foregroundColor">#1a1c28</color>
 </resources>

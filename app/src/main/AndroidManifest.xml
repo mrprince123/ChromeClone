@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.dhromebrowser">
+    package="com.browser.dhromebrowser">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -19,47 +19,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".NewsActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".Activity.BrowserActivity"
             android:exported="false" />
         <activity
-            android:name=".FeedbackActivity"
-            android:exported="false" />
-        <activity
-            android:name=".YouTubeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".BrowserActivity"
+            android:name=".Activity.WebPageActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".InstagramActivity"
-            android:exported="false"
-            android:label="Instagram" />
-        <activity
-            android:name=".HotstarActivity"
-            android:exported="false"
-            android:label="Hotstar" />
-        <activity
-            android:name=".FlipkartActivity"
-            android:exported="false"
-            android:label="Flipkart" />
-        <activity
-            android:name=".MyntraActivity"
-            android:exported="false"
-            android:label="Myntra" />
-        <activity
-            android:name=".GoogleActivity"
-            android:exported="false"
-            android:label="Google" />
-        <activity
-            android:name=".AmazonActivity"
-            android:exported="false"
-            android:label="Amazon" />
-        <activity
-            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,10 +33,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
